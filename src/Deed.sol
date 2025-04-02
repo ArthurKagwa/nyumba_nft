@@ -2,9 +2,7 @@
 pragma solidity ^0.8.0;
 
 contract Deed {
-    constructor() {
-        
-    }
+   
     // Tracks who owns each property (ID → Owner)
     mapping(uint256 => address) public owners;
     //people with approval to mange tokens
