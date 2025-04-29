@@ -17,6 +17,7 @@ contract Deed {
         require(owners[deedId] == address(0), "Deed already exists!");
         owners[deedId] = msg.sender;
         emit Minted(msg.sender, deedId);
+        
 
     
     }
