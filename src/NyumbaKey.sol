@@ -1,16 +1,18 @@
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
-contract Key {
-    // Property ID → Occupant + Expiry
+import "./NyumbaDeed.sol";
+
+contract NyumbaKey {
+    NyumbaDeed public nyumbaDeed;
     mapping(uint256 => address) public occupants;
     mapping(uint256 => uint256) public expiryTime;
     
     event OccupancyAssigned(uint256 indexed propertyId, address occupant, uint256 until);
 
     function assign(uint256 propertyId, address occupant, uint256 durationDays) public {
-        require(occupants[propertyId] == address(0), "Already occupied");
-        
+        require(nyumbaDeed.ownerOf(propertyId) == msg.sender, "Not property owner");
+
         occupants[propertyId] = occupant;
         expiryTime[propertyId] = block.timestamp + (durationDays * 1 days);
         
@@ -32,6 +34,7 @@ contract Key {
             block.timestamp < expiryTime[propertyId],
             "Occupancy period expired"
         );
+        
         
         // 3. Execute transfer
         occupants[propertyId] = newOccupant;

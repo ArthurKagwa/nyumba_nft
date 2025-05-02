@@ -2,22 +2,23 @@
 pragma solidity ^0.8.0;
 
 import "forge-std/Script.sol";
-import "../src/Deed.sol";
-import "../src/Key.sol";
-import "../src/Registry.sol";
+import "../src/NyumbaDeed.sol";
+import "../src/NyumbaKey.sol";
+import "../src/NyumbaRegistry.sol";
 
-contract DeployDeed is Script {
+contract DeployNyumbaDeed is Script {
     function run() external {
         vm.startBroadcast();
 
-        // Deploy the Deed contract
-        Deed deed = new Deed();
-        Key key = new Key();
-        Registry registry = new Registry();
+        NyumbaDeed nyumbaDeed = new NyumbaDeed(msg.sender);
+        NyumbaKey key = new NyumbaKey();
+        NyumbaRegistry registry = new NyumbaRegistry(address(nyumbaDeed), address(key));
 
-        console.log("Deed contract deployed at:", address(deed));
+
+        console.log("NyumbaDeed contract deployed at:", address(nyumbaDeed));
         console.log("Key contract deployed at:", address(key));
         console.log("Registry contract deployed at:", address(registry));
+        
 
         vm.stopBroadcast();
     }

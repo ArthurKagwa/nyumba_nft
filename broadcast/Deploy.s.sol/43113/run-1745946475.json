@@ -3,7 +3,7 @@
     {
       "hash": null,
       "transactionType": "CREATE",
-      "contractName": "Deed",
+      "contractName": "NyumbaDeed",
       "contractAddress": "0x8ce8f71f0661cb43ec469938682d51698d6ad43d",
       "function": null,
       "arguments": null,
