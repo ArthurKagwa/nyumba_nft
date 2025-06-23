@@ -12,3 +12,8 @@ docs/
 
 # Dotenv file
 .env
+
+# npm
+nymuba-estate-frontier/node_modules/
+# Hardhat artifacts
+artifacts/
